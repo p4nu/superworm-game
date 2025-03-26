@@ -1,3 +1,4 @@
 pygame==2.6.1
 pytest==8.3.5
 pyinstaller
+pytest-cov==6.0.0
