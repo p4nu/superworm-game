@@ -1,5 +1,7 @@
 import unittest
 import pygame
+import pytest
+
 from unittest.mock import patch, MagicMock
 from matopeli import message, gameLoop
 
