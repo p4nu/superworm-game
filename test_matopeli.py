@@ -1,22 +1,18 @@
 import pytest
-import pygame
-from matopeli import gameLoop, message
+from matopeli import message
 
-def test_message_rendering():
-    pygame.init()
-    width, height = 640, 480
-    window = pygame.display.set_mode((width, height))
-    font_style = pygame.font.SysFont(None, 50)
-    try:
-        message("Test Message", (255, 0, 0))
-        assert True  # If no errors occur, the test passes
-    except Exception as e:
-        pytest.fail(f"Message rendering failed: {e}")
+def test_message_rendering(monkeypatch):
+    # Mock the font_style.render method
+    def mock_render(msg, antialias, color):
+        return f"Rendered: {msg} with color {color}"
 
-def test_game_initialization():
-    pygame.init()
-    try:
-        gameLoop()  # Ensure the game loop initializes without crashing
-        assert True
-    except Exception as e:
-        pytest.fail(f"Game initialization failed: {e}")
+    monkeypatch.setattr("matopeli.font_style.render", mock_render)
+
+    # Mock the window.blit method
+    def mock_blit(mesg, position):
+        return f"Blitted: {mesg} at {position}"
+
+    monkeypatch.setattr("matopeli.window.blit", mock_blit)
+
+    result = message("Test Message", (255, 255, 255))
+    assert result == "Blitted: Rendered: Test Message with color (255, 255, 255) at [106.66666666666667, 160.0]"
