@@ -1,6 +1,6 @@
 # Superworm Game
 
-![Game Screenshot](screenshots/game_screenshot.png)
+![Game Screenshot](screenshots/screen.png)
 
 Welcome to **Superworm Game**, a fun and addictive game where you control a worm on a mission to grow and survive! Test your reflexes and strategy as you navigate through challenges and obstacles.
 
